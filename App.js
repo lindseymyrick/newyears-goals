@@ -14,11 +14,14 @@ export default function App() {
   }
 
   const deleteGoal = (goalToDelete) => {
-    console.log('goaltodelete', goalToDelete)
     const filteredGoals = courseGoals.filter((goal) => goal.id !== goalToDelete.id)
     setCourseGoals(filteredGoals);
     console.log('coursegoals', courseGoals)
     
+  }
+
+  const cancelGoal = () => {
+    setIsAddMode(false);
   }
 
 
@@ -27,7 +30,7 @@ export default function App() {
     <View style={styles.screen} >
 
       <Button title={"Add New Goal"} onPress={()=> setIsAddMode(true)} />
-      <GoalInput addGoalHandler={addGoalHandler} visible={isAddMode}  />
+      <GoalInput addGoalHandler={addGoalHandler} cancelGoal={cancelGoal} visible={isAddMode}  />
       <FlatList
       keyExtractor={(item, index) => item.id}
       data={courseGoals}
